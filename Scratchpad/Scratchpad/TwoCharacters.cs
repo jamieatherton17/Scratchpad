@@ -8,7 +8,7 @@ public class TwoCharacters
   /*
   * Solution to problem: https://www.hackerrank.com/challenges/two-characters/problem (Passes all test cases)
   *
-  * Overall time complexity: O(n) where n is the length of the input string
+  * Overall time complexity: T(m*n) = O(n) where m is number of pairs and n is the length of the input string
   */
   public int Execute(string s) 
   {

@@ -49,7 +49,7 @@ namespace Scratchpad{
      public bool LookupSolution(int[] sortedArray, int sum)
      {
          HashSet<int> complementLookup = new HashSet<int>();
-         bool result = false;
+
          for(int i = 0; i < sortedArray.Length; i++)
          {
              if(complementLookup.Contains(sortedArray[i]))
@@ -60,7 +60,7 @@ namespace Scratchpad{
                 complementLookup.Add(complement);
          }
 
-         return result;
+         return false;
      }
 
      private int BinarySearch(int[] sortedArray, int start, int end, int valueToFind)
