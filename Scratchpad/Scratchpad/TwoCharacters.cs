@@ -36,23 +36,22 @@ public class TwoCharacters
     }
     private bool IsAlternating(string s)
     {
-        int nextExpectedSymbolIndex = 0;
-        char[] alternatingSymbols = new char[2];
+        char? prevSymbol = null;
         bool isAlternating = true;
 
-        if(s.Length < 2 && s[0] != s[1]){
+        if(s.Length < 2)
             isAlternating = false;
-        }
-        else{
-            alternatingSymbols[0] = s[0];
-            alternatingSymbols[1] = s[1];
-            foreach(var symbol in s.AsEnumerable()){   
-                if(symbol != alternatingSymbols[nextExpectedSymbolIndex]){
+        else
+        {
+            foreach(var symbol in s.AsEnumerable())
+            {
+                if (symbol == prevSymbol)
+                {
                     isAlternating = false;
                     break;
-                }
-                
-                nextExpectedSymbolIndex = nextExpectedSymbolIndex == 1 ? 0 : 1;
+                }          
+
+                prevSymbol = symbol;
             }
         }
         
