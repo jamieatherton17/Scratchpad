@@ -70,7 +70,6 @@ namespace Scratchpad
 
             public SpecializedQueue(int maxSize,int maxValue)
             {
-                _queue = new Queue<int>();
                 _occurrenceCount = new int[maxValue + 1];
                 _maxValue = maxValue;
             }
@@ -109,33 +108,30 @@ namespace Scratchpad
                 int count = 0;
                 for (int i = 0; i < _occurrenceCount.Length; i++)
                 {
-                    int nextCountValue = count + _occurrenceCount[i];
+                    count += _occurrenceCount[i];
                     // Two middles must be distinct values
-                    if (nextCountValue == middle)
+                    if (count == middle)
                     {
-                        // Find next middle element and then compute median
-                        // Could perhaps make this a little neater but it will do
-                        int j = i;
-                        bool found = false;
-                        while (!found)
+                        int x = 0;
+                        for(int j = i; j < _occurrenceCount.Length; j++)
                         {
-                            j++; 
-                            if (_occurrenceCount[j] > 0)
-                                found = true;
+                            if (_occurrenceCount[j++] > 0)
+                            {
+                                x = j;
+                                break;
+                            }
                         }
 
-                        median = (i + j) / 2.0;
+                        median = (i + x) / 2.0;
                         break;
                     }
 
                     // Two middles must be the same value
-                    if (nextCountValue > middle)
+                    if (count > middle)
                     {
                         median = (i + i) / 2.0;
                         break;
                     }
-
-                    count = nextCountValue;
                 }
 
                 return median;
@@ -151,15 +147,13 @@ namespace Scratchpad
                 int median = 0;
                 for (int i = 0; i < _occurrenceCount.Length; i++)
                 {
-                    int nextCountValue = count + _occurrenceCount[i];
+                    count += _occurrenceCount[i];
 
-                    if (nextCountValue >= middle)
+                    if (count >= middle)
                     { 
                         median = i;
                         break;
                     }
-
-                    count = nextCountValue;
                 }
 
                 return median;
