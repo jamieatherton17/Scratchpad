@@ -99,9 +99,6 @@
 
             // Populates all directions to distance to edge of board
             private static void PopulateDistances(int[] distanceArr, int dimension, int queenX, int queenY) {
-                int halfDimension = dimension/2;
-
-
                 distanceArr[(int)Direction.Up] = dimension - queenY;
                 distanceArr[(int)Direction.Down] = dimension - distanceArr[(int)Direction.Up] - 1;
 
